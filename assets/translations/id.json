@@ -1,0 +1,36 @@
+{
+  "app": { "name": "D2YBank" },
+  "common": {
+    "ok": "OK",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "retry": "Coba Lagi",
+    "loading": "Memuat...",
+    "search": "Cari..."
+  },
+  "error": {
+    "no_internet": "Tidak ada koneksi internet.",
+    "timeout": "Waktu habis. Silakan coba lagi.",
+    "server": "Terjadi kesalahan server.",
+    "session_expired": "Sesi berakhir. Silakan masuk kembali.",
+    "invalid_credentials": "Email atau kata sandi salah.",
+    "unknown": "Terjadi kesalahan."
+  },
+  "auth": {
+    "login": "Masuk",
+    "register": "Daftar",
+    "email": "Email",
+    "password": "Kata Sandi",
+    "name": "Nama Lengkap",
+    "phone": "Nomor Telepon",
+    "forgot_password": "Lupa Kata Sandi?",
+    "no_account": "Belum punya akun?",
+    "have_account": "Sudah punya akun?"
+  },
+  "home": {
+    "title": "Beranda",
+    "total_balance": "Total Saldo",
+    "transfer": "Transfer",
+    "topup": "Isi Saldo"
+  }
+}
