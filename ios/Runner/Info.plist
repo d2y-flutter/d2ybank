@@ -50,5 +50,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>D2YBank membutuhkan akses galeri jika Anda ingin memilih foto KTP.</string>
 	
+	<key>NSFaceIDUsageDescription</key>
+	<string>D2YBank menggunakan Face ID untuk masuk dan bertransaksi dengan lebih cepat dan aman.</string>
 </dict>
 </plist>

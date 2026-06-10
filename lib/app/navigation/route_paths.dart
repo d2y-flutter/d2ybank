@@ -13,6 +13,7 @@ abstract final class RoutePaths {
   static const String kycForm = '/kyc-form';
   static const String setupPassword = '/setup-password';
   static const String setupPin = '/setup-pin';
+  static const String biometricSetup = '/biometric-setup';
 
   static const String home = '/home';
   static const String history = '/history';

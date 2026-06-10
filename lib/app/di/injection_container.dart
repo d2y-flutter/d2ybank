@@ -21,6 +21,13 @@ import 'package:d2ybank/features/auth/data/repositories/setup_password_repositor
 import 'package:d2ybank/features/auth/domain/repositories/setup_password_repository.dart';
 import 'package:d2ybank/features/auth/domain/usecases/setup_password_usecase.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/setup_password/setup_password_bloc.dart';
+import 'package:d2ybank/core/services/biometric_service.dart';
+import 'package:d2ybank/features/auth/data/repositories/biometric_repository_impl.dart';
+import 'package:d2ybank/features/auth/domain/repositories/biometric_repository.dart';
+import 'package:d2ybank/features/auth/domain/usecases/check_biometric_availability_usecase.dart';
+import 'package:d2ybank/features/auth/domain/usecases/enable_biometric_usecase.dart';
+import 'package:d2ybank/features/auth/domain/usecases/skip_biometric_usecase.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/biometric_setup/biometric_setup_bloc.dart';
 
 import 'package:get_it/get_it.dart';
 import '../../core/config/app_config.dart';
@@ -132,6 +139,38 @@ abstract final class InjectionContainer {
     sl.registerFactory(
       () => SetupPasswordBloc(
         setupPasswordUseCase: sl<SetupPasswordUseCase>(),
+      ),
+    );
+
+    sl.registerLazySingleton<BiometricService>(
+      () => BiometricService(),
+    );
+
+    sl.registerLazySingleton<BiometricRepository>(
+      () => BiometricRepositoryImpl(
+        biometricService: sl<BiometricService>(),
+        secureStorageService: sl<SecureStorageService>(),
+      ),
+    );
+
+    sl.registerLazySingleton(
+      () => CheckBiometricAvailabilityUseCase(sl<BiometricRepository>()),
+    );
+
+    sl.registerLazySingleton(
+      () => EnableBiometricUseCase(sl<BiometricRepository>()),
+    );
+
+    sl.registerLazySingleton(
+      () => SkipBiometricUseCase(sl<BiometricRepository>()),
+    );
+
+    sl.registerFactory(
+      () => BiometricSetupBloc(
+        checkBiometricAvailabilityUseCase:
+            sl<CheckBiometricAvailabilityUseCase>(),
+        enableBiometricUseCase: sl<EnableBiometricUseCase>(),
+        skipBiometricUseCase: sl<SkipBiometricUseCase>(),
       ),
     );
   }

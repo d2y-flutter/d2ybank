@@ -8,4 +8,7 @@ abstract final class StorageKeys {
   static const String onboardingCompleted = 'onboarding_completed';
   static const String biometricEnabled = 'biometric_enabled';
   static const String fcmToken = 'fcm_token';
+  static const String biometricUserId = 'biometric_user_id';
+  static const String biometricDeviceId = 'biometric_device_id';
+  static const String biometricRegisteredAt = 'biometric_registered_at';
 }

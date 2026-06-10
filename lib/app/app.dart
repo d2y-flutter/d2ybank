@@ -1,5 +1,6 @@
 import 'package:d2ybank/app/di/injection_container.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/biometric_setup/biometric_setup_bloc.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/identity_verification/identity_verification_bloc.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/kyc/kyc_bloc.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/setup_password/setup_password_bloc.dart';
@@ -39,6 +40,9 @@ class D2YBankApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (_) => sl<SetupPasswordBloc>(),
+                ),
+                BlocProvider(
+                  create: (_) => sl<BiometricSetupBloc>(),
                 ),
               ],
               child: MaterialApp.router(

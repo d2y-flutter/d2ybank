@@ -1,5 +1,6 @@
 import 'package:d2ybank/app/di/injection_container.dart';
 import 'package:d2ybank/core/services/face_detection_service.dart';
+import 'package:d2ybank/features/auth/presentation/pages/biometric_setup_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/kyc_form_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/login_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/otp_verification_page.dart';
@@ -21,7 +22,7 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 
 abstract final class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: RoutePaths.setupPassword,
+    initialLocation: RoutePaths.biometricSetup,
     debugLogDiagnostics: true,
     observers: [AppNavigatorObserver()],
     routes: [
@@ -87,10 +88,15 @@ abstract final class AppRouter {
         builder: (context, state) => const KycFormPage(),
       ),
       GoRoute(
-      path: RoutePaths.setupPassword,
-      name: RouteNames.setupPassword,
-      builder: (context, state) => const SetupPasswordPage(),
-    ),
+        path: RoutePaths.setupPassword,
+        name: RouteNames.setupPassword,
+        builder: (context, state) => const SetupPasswordPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.biometricSetup,
+        name: RouteNames.biometricSetup,
+        builder: (context, state) => const BiometricSetupPage(),
+      ),
       ShellRoute(
         builder: (context, state, child) {
           return _MainShell(
