@@ -10,6 +10,8 @@ abstract final class RouteNames {
   static const String identityKtp = 'identityKtp';
   static const String identityFace = 'identityFace';
 
+  static const String kycForm = 'kycForm';
+
   static const String home = 'home';
   static const String history = 'history';
   static const String profile = 'profile';

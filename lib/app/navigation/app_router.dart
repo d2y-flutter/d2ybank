@@ -1,5 +1,6 @@
 import 'package:d2ybank/app/di/injection_container.dart';
 import 'package:d2ybank/core/services/face_detection_service.dart';
+import 'package:d2ybank/features/auth/presentation/pages/kyc_form_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/login_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/otp_verification_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/register_account_page.dart';
@@ -19,7 +20,7 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 
 abstract final class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: RoutePaths.identityVerification,
+    initialLocation: RoutePaths.kycForm,
     debugLogDiagnostics: true,
     observers: [AppNavigatorObserver()],
     routes: [
@@ -78,6 +79,11 @@ abstract final class AppRouter {
             },
           ),
         ],
+      ),
+      GoRoute(
+        path: RoutePaths.kycForm,
+        name: RouteNames.kycForm,
+        builder: (context, state) => const KycFormPage(),
       ),
       ShellRoute(
         builder: (context, state, child) {

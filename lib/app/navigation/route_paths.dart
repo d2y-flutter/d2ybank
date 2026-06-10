@@ -10,6 +10,8 @@ abstract final class RoutePaths {
   static const String identityKtp = '/ktp';
   static const String identityFace = '/face';
 
+  static const String kycForm = '/kyc-form';
+
   static const String home = '/home';
   static const String history = '/history';
   static const String profile = '/profile';

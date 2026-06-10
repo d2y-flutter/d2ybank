@@ -1,6 +1,7 @@
 import 'package:d2ybank/app/navigation/route_paths.dart';
 import 'package:d2ybank/core/config/app_colors.dart';
 import 'package:d2ybank/shared/components/buttons/d2y_button.dart';
+import 'package:d2ybank/shared/components/feedback/d2y_toast.dart';
 import 'package:d2ybank/shared/components/inputs/d2y_country_phone_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -55,6 +56,11 @@ class _RegisterAccountPageState extends State<RegisterAccountPage> {
   }
 
   void _submit() {
+     D2YToast.info(
+        context,
+        title: 'OTP sent successfully',
+        description: 'OTP dikirim ke $_normalizedPhone',
+      );
     final digits = _phoneController.text.replaceAll(RegExp(r'\D'), '');
 
     setState(() {
@@ -85,11 +91,10 @@ class _RegisterAccountPageState extends State<RegisterAccountPage> {
 
     widget.onSendOtp?.call(_normalizedPhone);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('OTP dikirim ke $_normalizedPhone')),
-    );
     
-    context.go(RoutePaths.otp, extra: _normalizedPhone);
+    
+    
+    // context.go(RoutePaths.otp, extra: _normalizedPhone);
   }
 
   @override

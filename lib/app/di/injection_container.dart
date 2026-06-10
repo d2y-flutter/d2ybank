@@ -13,6 +13,10 @@ import 'package:d2ybank/features/auth/data/repositories/identity_verification_re
 import 'package:d2ybank/features/auth/domain/repositories/identity_verification_repository.dart';
 import 'package:d2ybank/features/auth/domain/usecases/submit_face_verification_usecase.dart';
 import 'package:d2ybank/features/auth/domain/usecases/submit_ktp_photo_usecase.dart';
+import 'package:d2ybank/features/auth/data/repositories/kyc_repository_impl.dart';
+import 'package:d2ybank/features/auth/domain/repositories/kyc_repository.dart';
+import 'package:d2ybank/features/auth/domain/usecases/submit_kyc_usecase.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/kyc/kyc_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../../core/config/app_config.dart';
 import '../../core/network/api_client.dart';
@@ -77,6 +81,8 @@ abstract final class InjectionContainer {
       () => IdentityVerificationRepositoryImpl(),
     );
 
+    // ============================================
+
     sl.registerLazySingleton(
       () => SubmitKtpPhotoUseCase(sl<IdentityVerificationRepository>()),
     );
@@ -93,6 +99,20 @@ abstract final class InjectionContainer {
       () => IdentityVerificationBloc(
         submitKtpPhotoUseCase: sl<SubmitKtpPhotoUseCase>(),
         submitFaceVerificationUseCase: sl<SubmitFaceVerificationUseCase>(),
+      ),
+    );
+
+    sl.registerLazySingleton<KycRepository>(
+      () => KycRepositoryImpl(),
+    );
+
+    sl.registerLazySingleton(
+      () => SubmitKycUseCase(sl<KycRepository>()),
+    );
+
+    sl.registerFactory(
+      () => KycBloc(
+        submitKycUseCase: sl<SubmitKycUseCase>(),
       ),
     );
 
