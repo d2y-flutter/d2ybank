@@ -4,6 +4,7 @@ import 'package:d2ybank/features/auth/presentation/pages/kyc_form_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/login_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/otp_verification_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/register_account_page.dart';
+import 'package:d2ybank/features/auth/presentation/pages/setup_password_page.dart';
 import 'package:d2ybank/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:d2ybank/features/dashboard/presentation/widgets/dashboard_bottom_nav_bar.dart';
 import 'package:d2ybank/features/onboarding/presentation/pages/onboarding_page.dart';
@@ -20,7 +21,7 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 
 abstract final class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: RoutePaths.kycForm,
+    initialLocation: RoutePaths.setupPassword,
     debugLogDiagnostics: true,
     observers: [AppNavigatorObserver()],
     routes: [
@@ -85,6 +86,11 @@ abstract final class AppRouter {
         name: RouteNames.kycForm,
         builder: (context, state) => const KycFormPage(),
       ),
+      GoRoute(
+      path: RoutePaths.setupPassword,
+      name: RouteNames.setupPassword,
+      builder: (context, state) => const SetupPasswordPage(),
+    ),
       ShellRoute(
         builder: (context, state, child) {
           return _MainShell(

@@ -94,7 +94,7 @@ class _RegisterAccountPageState extends State<RegisterAccountPage> {
     
     
     
-    // context.go(RoutePaths.otp, extra: _normalizedPhone);
+    context.go(RoutePaths.otp, extra: _normalizedPhone);
   }
 
   @override

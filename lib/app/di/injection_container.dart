@@ -17,6 +17,11 @@ import 'package:d2ybank/features/auth/data/repositories/kyc_repository_impl.dart
 import 'package:d2ybank/features/auth/domain/repositories/kyc_repository.dart';
 import 'package:d2ybank/features/auth/domain/usecases/submit_kyc_usecase.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/kyc/kyc_bloc.dart';
+import 'package:d2ybank/features/auth/data/repositories/setup_password_repository_impl.dart';
+import 'package:d2ybank/features/auth/domain/repositories/setup_password_repository.dart';
+import 'package:d2ybank/features/auth/domain/usecases/setup_password_usecase.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/setup_password/setup_password_bloc.dart';
+
 import 'package:get_it/get_it.dart';
 import '../../core/config/app_config.dart';
 import '../../core/network/api_client.dart';
@@ -115,6 +120,19 @@ abstract final class InjectionContainer {
         submitKycUseCase: sl<SubmitKycUseCase>(),
       ),
     );
+    
+    sl.registerLazySingleton<SetupPasswordRepository>(
+      () => SetupPasswordRepositoryImpl(),
+    );
 
+    sl.registerLazySingleton(
+      () => SetupPasswordUseCase(sl<SetupPasswordRepository>()),
+    );
+
+    sl.registerFactory(
+      () => SetupPasswordBloc(
+        setupPasswordUseCase: sl<SetupPasswordUseCase>(),
+      ),
+    );
   }
 }
