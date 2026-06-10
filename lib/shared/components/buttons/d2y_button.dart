@@ -60,7 +60,7 @@ class D2YButton extends StatelessWidget {
           child: _buildContent(fg)),
         D2YButtonVariant.tonal => ElevatedButton(
           onPressed: isLoading ? null : onPressed,
-          style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primarySurface, foregroundColor: AppColors.primary,
+          style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primary, foregroundColor: AppColors.primary,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius))),
           child: _buildContent(AppColors.primary)),
       },

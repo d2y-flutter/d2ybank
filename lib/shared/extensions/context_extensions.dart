@@ -12,10 +12,10 @@ extension BuildContextX on BuildContext {
   bool get isMobile => screenWidth < AppBreakpoints.tablet;
   bool get isTablet => screenWidth >= AppBreakpoints.tablet && screenWidth < AppBreakpoints.desktop;
 
-  Color get textPrimaryColor => isDarkMode ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-  Color get textSecondaryColor => isDarkMode ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-  Color get surfaceColor => isDarkMode ? AppColors.surfaceDark : AppColors.surfaceLight;
-  Color get borderColor => isDarkMode ? AppColors.borderDark : AppColors.borderLight;
+  Color get textPrimaryColor => isDarkMode ? AppColors.primary : AppColors.primaryContainer;
+  Color get textSecondaryColor => isDarkMode ? AppColors.secondary : AppColors.secondaryContainer;
+  Color get surfaceColor => isDarkMode ? AppColors.surface : AppColors.surfaceTint;
+  Color get borderColor => isDarkMode ? AppColors.ghostBorder : AppColors.ghostBorder;
 
   void unfocus() => FocusScope.of(this).unfocus();
 }

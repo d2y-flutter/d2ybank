@@ -1,3 +1,18 @@
+import 'package:d2ybank/core/services/face_detection_service.dart';
+import 'package:d2ybank/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:d2ybank/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:d2ybank/features/auth/domain/repositories/auth_repository.dart';
+import 'package:d2ybank/features/auth/domain/usecases/login_usecase.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/auth/auth_bloc.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/identity_verification/identity_verification_bloc.dart';
+import 'package:d2ybank/features/dashboard/data/datasources/dashboard_data_source.dart';
+import 'package:d2ybank/features/dashboard/data/repositories/dashboard_repository_impl.dart';
+import 'package:d2ybank/features/dashboard/domain/repositories/dashboard_repository.dart';
+import 'package:d2ybank/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:d2ybank/features/auth/data/repositories/identity_verification_repository_impl.dart';
+import 'package:d2ybank/features/auth/domain/repositories/identity_verification_repository.dart';
+import 'package:d2ybank/features/auth/domain/usecases/submit_face_verification_usecase.dart';
+import 'package:d2ybank/features/auth/domain/usecases/submit_ktp_photo_usecase.dart';
 import 'package:get_it/get_it.dart';
 import '../../core/config/app_config.dart';
 import '../../core/network/api_client.dart';
@@ -34,5 +49,52 @@ abstract final class InjectionContainer {
     // Network
     sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
     sl.registerLazySingleton<ApiClient>(() => ApiClient(config: sl(), networkInfo: sl()));
+
+    // Data Sources
+    sl.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthDummyDataSource(),
+    );
+    sl.registerLazySingleton<DashboardDataSource>(
+      () => DashboardDummyDataSource(),
+    );
+
+    // Repository
+    sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(remoteDataSource: sl()),
+    );
+    sl.registerLazySingleton<DashboardRepository>(
+      () => DashboardRepositoryImpl(dataSource: sl()),
+    );
+
+    // UseCases
+    sl.registerLazySingleton(() => LoginUseCase(sl()));
+
+    // Bloc
+    sl.registerFactory(() => AuthBloc(loginUseCase: sl()));
+    sl.registerFactory(() => DashboardBloc(repository: sl()));
+
+    sl.registerLazySingleton<IdentityVerificationRepository>(
+      () => IdentityVerificationRepositoryImpl(),
+    );
+
+    sl.registerLazySingleton(
+      () => SubmitKtpPhotoUseCase(sl<IdentityVerificationRepository>()),
+    );
+
+    sl.registerLazySingleton(
+      () => SubmitFaceVerificationUseCase(sl<IdentityVerificationRepository>()),
+    );
+
+    sl.registerLazySingleton<FaceDetectionService>(
+      () => FaceDetectionService(),
+    );
+
+    sl.registerFactory(
+      () => IdentityVerificationBloc(
+        submitKtpPhotoUseCase: sl<SubmitKtpPhotoUseCase>(),
+        submitFaceVerificationUseCase: sl<SubmitFaceVerificationUseCase>(),
+      ),
+    );
+
   }
 }

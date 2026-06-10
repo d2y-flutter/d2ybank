@@ -17,9 +17,9 @@ class D2YErrorView extends StatelessWidget {
     return Center(child: Padding(padding: const EdgeInsets.all(AppSpacing.xl), child: Column(mainAxisSize: MainAxisSize.min, children: [
       Icon(Icons.error_outline_rounded, size: 72, color: AppColors.error.withValues(alpha: 0.7)),
       const SizedBox(height: AppSpacing.lg),
-      Text(title ?? 'Something Went Wrong', style: AppTextStyles.headlineSmall.copyWith(color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight), textAlign: TextAlign.center),
+      Text(title ?? 'Something Went Wrong', style: AppTextStyles.headlineSmall.copyWith(color: isDark ? AppColors.primary : AppColors.primaryContainer), textAlign: TextAlign.center),
       if (message != null) ...[const SizedBox(height: AppSpacing.xs),
-        Text(message!, style: AppTextStyles.bodyMedium.copyWith(color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight), textAlign: TextAlign.center)],
+        Text(message!, style: AppTextStyles.bodyMedium.copyWith(color: isDark ? AppColors.secondary : AppColors.secondaryContainer), textAlign: TextAlign.center)],
       if (onRetry != null) ...[const SizedBox(height: AppSpacing.xl),
         D2YButton(text: 'Try Again', onPressed: onRetry, isFullWidth: false, size: D2YButtonSize.medium, prefixIcon: const Icon(Icons.refresh_rounded))],
     ])));

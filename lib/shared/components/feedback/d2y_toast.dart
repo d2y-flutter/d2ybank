@@ -13,8 +13,8 @@ class D2YToast {
     final (Color bg, Color fg, IconData icon) = switch (type) {
       D2YToastType.success => (AppColors.success, AppColors.white, Icons.check_circle_rounded),
       D2YToastType.error => (AppColors.error, AppColors.white, Icons.error_rounded),
-      D2YToastType.warning => (AppColors.warning, AppColors.neutral900, Icons.warning_rounded),
-      D2YToastType.info => (AppColors.neutral900, AppColors.white, Icons.info_rounded),
+      D2YToastType.warning => (AppColors.warning, AppColors.onPrimary, Icons.warning_rounded),
+      D2YToastType.info => (AppColors.onPrimary, AppColors.white, Icons.info_rounded),
     };
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

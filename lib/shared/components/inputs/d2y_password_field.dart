@@ -34,7 +34,7 @@ class _D2YPasswordFieldState extends State<D2YPasswordField> {
         onTap: () => setState(() => _obscured = !_obscured),
         child: Padding(padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Icon(_obscured ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-            size: 20, color: isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight))),
+            size: 20, color: isDark ? AppColors.onPrimary : AppColors.primary))),
     );
   }
 }

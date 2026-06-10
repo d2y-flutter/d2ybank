@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>D2YBank membutuhkan kamera untuk verifikasi KTP dan wajah.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>D2YBank membutuhkan akses galeri jika Anda ingin memilih foto KTP.</string>
+	
 </dict>
 </plist>

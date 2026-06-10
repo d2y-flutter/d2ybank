@@ -18,10 +18,10 @@ class D2YLoading extends StatelessWidget {
       indicator = Column(mainAxisSize: MainAxisSize.min, children: [
         indicator, const SizedBox(height: AppSpacing.md),
         Text(message!, style: AppTextStyles.bodyMedium.copyWith(
-          color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight), textAlign: TextAlign.center),
+          color: isDark ? AppColors.secondary : AppColors.secondaryContainer), textAlign: TextAlign.center),
       ]);
     }
-    if (overlay) return Container(color: isDark ? AppColors.overlayDark : AppColors.overlayLight, child: Center(child: indicator));
+    if (overlay) return Container(color: isDark ? AppColors.outlineVariant : AppColors.onSurfaceVariant, child: Center(child: indicator));
     return Center(child: indicator);
   }
 }
