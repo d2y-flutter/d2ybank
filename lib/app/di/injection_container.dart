@@ -28,6 +28,11 @@ import 'package:d2ybank/features/auth/domain/usecases/check_biometric_availabili
 import 'package:d2ybank/features/auth/domain/usecases/enable_biometric_usecase.dart';
 import 'package:d2ybank/features/auth/domain/usecases/skip_biometric_usecase.dart';
 import 'package:d2ybank/features/auth/presentation/bloc/biometric_setup/biometric_setup_bloc.dart';
+import 'package:d2ybank/core/security/pin_hash_service.dart';
+import 'package:d2ybank/features/auth/data/repositories/setup_pin_repository_impl.dart';
+import 'package:d2ybank/features/auth/domain/repositories/setup_pin_repository.dart';
+import 'package:d2ybank/features/auth/domain/usecases/setup_pin_usecase.dart';
+import 'package:d2ybank/features/auth/presentation/bloc/setup_pin/setup_pin_bloc.dart';
 
 import 'package:get_it/get_it.dart';
 import '../../core/config/app_config.dart';
@@ -171,6 +176,27 @@ abstract final class InjectionContainer {
             sl<CheckBiometricAvailabilityUseCase>(),
         enableBiometricUseCase: sl<EnableBiometricUseCase>(),
         skipBiometricUseCase: sl<SkipBiometricUseCase>(),
+      ),
+    );
+
+    sl.registerLazySingleton<PinHashService>(
+      () => PinHashService(),
+    );
+
+    sl.registerLazySingleton<SetupPinRepository>(
+      () => SetupPinRepositoryImpl(
+        secureStorageService: sl<SecureStorageService>(),
+        pinHashService: sl<PinHashService>(),
+      ),
+    );
+
+    sl.registerLazySingleton(
+      () => SetupPinUseCase(sl<SetupPinRepository>()),
+    );
+
+    sl.registerFactory(
+      () => SetupPinBloc(
+        setupPinUseCase: sl<SetupPinUseCase>(),
       ),
     );
   }

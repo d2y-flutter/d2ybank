@@ -5,7 +5,9 @@ import 'package:d2ybank/features/auth/presentation/pages/kyc_form_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/login_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/otp_verification_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/register_account_page.dart';
+import 'package:d2ybank/features/auth/presentation/pages/registration_success_page.dart';
 import 'package:d2ybank/features/auth/presentation/pages/setup_password_page.dart';
+import 'package:d2ybank/features/auth/presentation/pages/setup_pin_page.dart';
 import 'package:d2ybank/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:d2ybank/features/dashboard/presentation/widgets/dashboard_bottom_nav_bar.dart';
 import 'package:d2ybank/features/onboarding/presentation/pages/onboarding_page.dart';
@@ -22,7 +24,7 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 
 abstract final class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: RoutePaths.biometricSetup,
+    initialLocation: RoutePaths.splash,
     debugLogDiagnostics: true,
     observers: [AppNavigatorObserver()],
     routes: [
@@ -96,6 +98,16 @@ abstract final class AppRouter {
         path: RoutePaths.biometricSetup,
         name: RouteNames.biometricSetup,
         builder: (context, state) => const BiometricSetupPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.setupPin,
+        name: RouteNames.setupPin,
+        builder: (context, state) => const SetupPinPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.registrationSuccess,
+        name: RouteNames.registrationSuccess,
+        builder: (context, state) => const RegistrationSuccessPage(),
       ),
       ShellRoute(
         builder: (context, state, child) {

@@ -11,4 +11,8 @@ abstract final class StorageKeys {
   static const String biometricUserId = 'biometric_user_id';
   static const String biometricDeviceId = 'biometric_device_id';
   static const String biometricRegisteredAt = 'biometric_registered_at';
+  static const String pinHash = 'pin_hash';
+  static const String pinSalt = 'pin_salt';
+  static const String pinIterations = 'pin_iterations';
+  static const String pinCreatedAt = 'pin_created_at';
 }

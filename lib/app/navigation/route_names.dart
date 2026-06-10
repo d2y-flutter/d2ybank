@@ -14,6 +14,7 @@ abstract final class RouteNames {
   static const String setupPassword = 'setupPassword';
   static const String setupPin = 'setupPin';
   static const String biometricSetup = 'biometricSetup';
+static const String registrationSuccess = 'registrationSuccess';
 
   static const String home = 'home';
   static const String history = 'history';
